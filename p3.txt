@@ -1,0 +1,9 @@
+Se agregaria un atributo de saldo transferido actual qeue se tenga que reiniciar cada dia, donde cada vez que se supere la cantidad estimada rechaze la operacion con 406, Not accepted.
+
+Basicamente a la clase Cuenta un atributo llamado saldo transferido, donde se reiniciaria cada dia a 0, y por cada transaccion se actualice hasta algun tope que seria 200. Si se usara un modelo SQL con un trigger interno bastaria, sino en todo caso con un atributo extra que sea tiempo actual
+
+Si no se maneja bien la implementacion podrias bloquear todas las trasnsacciones pero sino, no habria problema, en general.
+
+Respecto a casos deberias validar que no exceda el tope, y sobre todo reinicio de fecha.
+
+Se agregaria un metodo interno de la clase q actulice el saldo del usuario actual

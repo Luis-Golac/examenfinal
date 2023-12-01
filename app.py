@@ -15,6 +15,7 @@ class Cuenta:
         self.saldo = saldo
         self.contactos = contactos
 
+
     def __repr__(self):
         return f'Cuenta: numero = {self.numero}, nombre = {self.nombre}, saldo = {self.saldo}, contactos = {self.contactos}'
 
@@ -22,8 +23,7 @@ class Cuenta:
 
         return {
             'nombre': self.nombre,
-            'saldo': self.saldo,
-            'contactos': self.contactos
+            'saldo': self.saldo
         }
 
     def format_contactos(self):
@@ -75,6 +75,16 @@ class Cuenta:
                 return i
         return -1
 
+    @staticmethod
+    def get_nombre_byNumero(numero):
+        for i in range(len(cuentas)):
+            if cuentas[i].numero == numero:
+                return cuentas[i].nombre
+
+    @staticmethod
+    def cargar_datos_iniciales(datos_iniciales):
+        cuentas = datos_iniciales
+
 class Operacion:
     def __init__(self, numeroDestino, fecha, valor, numero_cuenta):
         self.numeroDestino = numeroDestino
@@ -87,10 +97,12 @@ class Operacion:
         return f'Operacion: numeroDestino = {self.numeroDestino}, numero_cuenta = {self.numero_cuenta}, valor = {self.valor}, fecha = {self.fecha}'
 
     def format_p(self):
-        return f'Pago realizado de {self.valor} a {self.numeroDestino}'
+        nombre = Cuenta.get_nombre_byNumero(self.numeroDestino)
+        return f'Pago realizado de {self.valor} a {nombre}'
 
     def format_r(self):
-        return f'Pago recibido de {self.valor} a {self.numero_cuenta}'
+        nombre = Cuenta.get_nombre_byNumero(self.numero_cuenta)
+        return f'Pago recibido de {self.valor} por {nombre}'
 
 # Data con data de inicial
 cuentas = [
